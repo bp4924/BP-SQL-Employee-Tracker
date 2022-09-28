@@ -8,7 +8,7 @@ CREATE TABLE department (
   name VARCHAR(30) NULL
 );
 
-CREATE TABLE position (
+CREATE TABLE role (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30),
   salary DECIMAL,
@@ -21,7 +21,7 @@ CREATE TABLE employee (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  position_id INT,
+  role_id INT,
   manager_id INT
   /*
   FOREIGN KEY (position_id) REFERENCES position(id)
