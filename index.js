@@ -27,8 +27,6 @@ function firstPrompt() {
         "View Departments",
         "View Roles",
         "View Employees",
-        // "View Employees by Manager",
-        //"View Employees by Department",
         "View Budget by Department",
         "Add a Department",
         "Add a Role",
@@ -54,10 +52,9 @@ function firstPrompt() {
           viewEmployees();
           break;
         case "View Employees by Manager":
-          console.log("pending");
           viewEmployeeByManager();
           break;
-        case "View Employees by Department": // DONE!!
+        case "View Employees by Department":
           viewEmployeesByDepartment();
           break;
         case "View Budget by Department":
@@ -66,27 +63,33 @@ function firstPrompt() {
 
         // Add
         case "Add a Department":
-          addDepartment();
+          console.log("Pending");
+          //          addDepartment();
           break;
         case "Add a Role":
-          addRole();
+          console.log("Pending");
+          //          addRole();
           break;
         case "Add an Employee":
-          addEmployee();
+          console.log("Pending");
+          //          addEmployee();
           break;
         // update
         case "Update Employee Role":
-          updateEmployeeRole();
+          console.log("Pending");
+          //          updateEmployeeRole();
           break;
         case "Update Employee Manager":
           console.log("pending");
           //   updateEmployeeManager();
           break;
         case "Remove a Department":
-          removeDepartment();
+          console.log("Pending");
+          //          removeDepartment();
           break;
         case "Remove an Employee":
-          removeEmployees();
+          console.log("Pending");
+          //          removeEmployees();
           break;
         case "Remove a Role":
           console.log("pending");
@@ -176,20 +179,16 @@ function viewAllEmployees() {
 }
 
 function viewEmployeeByManager() {
-  let query = `SELECT e.id, e.last_name
-  FROM employee e
-    JOIN role r
-    ON e.role_id = r.id
-    JOIN department d
-    ON d.id = r.department_id
-  WHERE isnull(e.manager_id)`;
+  let query = `SELECT id, CONCAT(first_name, ' ', last_name) AS manager 
+  FROM employee
+  WHERE isnull(manager_id)`;
 
   connection.query(query, function (err, res) {
     if (err) throw err;
 
     const managerChoices = res.map((data) => ({
       value: data.id,
-      name: data.name,
+      name: data.manager,
     }));
 
     inquirer
@@ -308,7 +307,7 @@ function viewBudgetByDepartment() {
   });
 }
 
-function promptDepartment(departmentChoices) {
+/* function promptDepartment(departmentChoices) {
   inquirer
     .prompt([
       {
@@ -338,10 +337,9 @@ function promptDepartment(departmentChoices) {
       });
     });
 }
+ */
 
 function addEmployee() {
-  console.log("Inserting an employee!");
-
   var query = `SELECT r.id, r.title, r.salary 
       FROM role r`;
 
