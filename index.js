@@ -64,15 +64,14 @@ function firstPrompt() {
         // Add
         case "Add a Department":
           console.log("Pending");
-          //          addDepartment();
+          addDepartment();
           break;
         case "Add a Role":
           console.log("Pending");
           //          addRole();
           break;
         case "Add an Employee":
-          console.log("Pending");
-          //          addEmployee();
+          addEmployee();
           break;
         // update
         case "Update Employee Role":
@@ -307,37 +306,33 @@ function viewBudgetByDepartment() {
   });
 }
 
-/* function promptDepartment(departmentChoices) {
+function addDepartment() {
   inquirer
     .prompt([
       {
-        type: "list",
-        name: "dept",
-        message: "Which Department?",
-        choices: departmentChoices,
+        type: "input",
+        name: "department",
+        message: "Department to add?",
       },
     ])
 
     .then(function (answer) {
-      const dept = answer.departmentId;
-      let query = `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department 
-        FROM employee e
-        JOIN role r
-      	ON e.role_id = r.id
-        JOIN department d
-        ON d.id = r.department_id
-        WHERE d.id = ${dept}`;
+      console.log(answer.department);
 
-      connection.query(query, answer.departmentId, function (err, res) {
-        if (err) throw err;
+      let query = `INSERT INTO department SET ?`;
+      connection.query(
+        query,
+        {
+          name: answer.department,
+        },
+        function (err, res) {
+          if (err) throw err;
 
-        console.table(res);
-
-        firstPrompt();
-      });
+          viewDepartments();
+        }
+      );
     });
 }
- */
 
 function addEmployee() {
   var query = `SELECT r.id, r.title, r.salary 
@@ -354,58 +349,54 @@ function addEmployee() {
 
     console.table(res);
 
-    promptInsert(roleChoices);
-  });
-}
-
-function promptInsert(roleChoices) {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "first_name",
-        message: "What is the employee's first name?",
-      },
-      {
-        type: "input",
-        name: "last_name",
-        message: "What is the employee's last name?",
-      },
-      {
-        type: "list",
-        name: "roleId",
-        message: "What is the employee's role?",
-        choices: roleChoices,
-      },
-      // {
-      //   name: "manager_id",
-      //   type: "list",
-      //   message: "What is the employee's manager_id?",
-      //   choices: manager
-      // }
-    ])
-    .then(function (answer) {
-      console.log(answer);
-
-      let query = `INSERT INTO employee SET ?`;
-      connection.query(
-        query,
+    inquirer
+      .prompt([
         {
-          first_name: answer.first_name,
-          last_name: answer.last_name,
-          role_id: answer.roleId,
-          manager_id: answer.managerId,
+          type: "input",
+          name: "first_name",
+          message: "What is the employee's first name?",
         },
-        function (err, res) {
-          if (err) throw err;
+        {
+          type: "input",
+          name: "last_name",
+          message: "What is the employee's last name?",
+        },
+        {
+          type: "list",
+          name: "roleId",
+          message: "What is the employee's role?",
+          choices: roleChoices,
+        },
+        // {
+        //   name: "manager_id",
+        //   type: "list",
+        //   message: "What is the employee's manager_id?",
+        //   choices: manager
+        // }
+      ])
+      .then(function (answer) {
+        console.log(answer);
 
-          console.table(res);
-          console.log(res.insertedRows + "Inserted successfully!\n");
+        let query = `INSERT INTO employee SET ?`;
+        connection.query(
+          query,
+          {
+            first_name: answer.first_name,
+            last_name: answer.last_name,
+            role_id: answer.roleId,
+            manager_id: answer.managerId,
+          },
+          function (err, res) {
+            if (err) throw err;
 
-          firstPrompt();
-        }
-      );
-    });
+            console.table(res);
+            console.log(res.insertedRows + "Inserted successfully!\n");
+
+            firstPrompt();
+          }
+        );
+      });
+  });
 }
 
 //========================================= 5."Remove Employees" / DELETE, DELETE FROM
