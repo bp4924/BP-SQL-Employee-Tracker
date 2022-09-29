@@ -51,17 +51,11 @@ function menuOptions() {
         case "View Employees":
           viewEmployees();
           break;
-        case "View Employees by Manager":
-          viewEmployeeByManager();
-          break;
-        case "View Employees by Department":
-          viewEmployeesByDepartment();
-          break;
         case "View Budget by Department":
           viewBudgetByDepartment();
           break;
 
-        // Add
+        // Adds
         case "Add a Department":
           addDepartment();
           break;
@@ -72,10 +66,11 @@ function menuOptions() {
         case "Add an Employee":
           addEmployee();
           break;
+
         // update
         case "Update Employee Role":
           console.log("Pending");
-          //          updateEmployeeRole();
+          updateEmployeeRole();
           break;
         case "Update Employee Manager":
           console.log("pending");
@@ -148,7 +143,7 @@ function viewEmployees() {
           viewAllEmployees();
           break;
         case "View Employees by Manager":
-          viewEmployeeByManager();
+          viewEmployeesByManager();
           break;
         case "View Employees by Department":
           viewEmployeesByDepartment();
@@ -176,7 +171,7 @@ function viewAllEmployees() {
   });
 }
 
-function viewEmployeeByManager() {
+function viewEmployeesByManager() {
   let query = `SELECT id, CONCAT(first_name, ' ', last_name) AS manager 
   FROM employee
   WHERE isnull(manager_id)`;
@@ -389,16 +384,16 @@ function addRole() {
 }
 
 function addEmployee() {
-  var query = `SELECT r.id, r.title, r.salary 
-      FROM role r`;
+  var query = `SELECT * 
+  FROM role
+`;
 
   connection.query(query, function (err, res) {
     if (err) throw err;
 
-    const roleChoices = res.map(({ id, title, salary }) => ({
-      value: id,
-      title: `${title}`,
-      salary: `${salary}`,
+    const roleChoices = res.map((data) => ({
+      value: data.id,
+      name: data.title,
     }));
 
     console.table(res);
@@ -417,16 +412,10 @@ function addEmployee() {
         },
         {
           type: "list",
-          name: "roleId",
+          name: "title",
           message: "What is the employee's role?",
           choices: roleChoices,
         },
-        // {
-        //   name: "manager_id",
-        //   type: "list",
-        //   message: "What is the employee's manager_id?",
-        //   choices: manager
-        // }
       ])
       .then(function (answer) {
         console.log(answer);
@@ -437,13 +426,11 @@ function addEmployee() {
           {
             first_name: answer.first_name,
             last_name: answer.last_name,
-            role_id: answer.roleId,
-            manager_id: answer.managerId,
+            role_id: answer.title,
           },
           function (err, res) {
             if (err) throw err;
 
-            console.table(res);
             console.log(res.insertedRows + "Inserted successfully!\n");
 
             menuOptions();
@@ -453,10 +440,7 @@ function addEmployee() {
   });
 }
 
-//========================================= 5."Remove Employees" / DELETE, DELETE FROM
-
-// Make a employee array to delete
-
+// update or remove
 function removeEmployees() {
   console.log("Deleting an employee");
 
@@ -472,13 +456,10 @@ function removeEmployees() {
     }));
 
     console.table(res);
-    console.log("ArrayToDelete!\n");
 
     promptDelete(deleteEmployeeChoices);
   });
 }
-
-// User choose the employee list, then employee is deleted
 
 function promptDelete(deleteEmployeeChoices) {
   inquirer
@@ -503,8 +484,6 @@ function promptDelete(deleteEmployeeChoices) {
       });
     });
 }
-
-//========================================= 6."Update Employee Role" / UPDATE,
 
 function updateEmployeeRole() {
   employeeArray();
