@@ -628,7 +628,6 @@ function updateEmployeeManager() {
       name: data.manager,
     }));
 
-    console.log(managerChoices + ", " + employeeChoices);
     managerUpdate(employeeChoices, managerChoices);
   });
 }

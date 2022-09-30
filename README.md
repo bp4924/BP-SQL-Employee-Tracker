@@ -34,7 +34,7 @@ GT Coding Bootcamp Challenge 12
 
 ## Usage
 
-      Initialize the databases by typing npm restore-data. Then type npm start.
+      Initialize the databases by typing "npm run restore-data". Then type "npm start".
 
 ## License
 
