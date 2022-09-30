@@ -22,15 +22,20 @@ GT Coding Bootcamp Challenge 12
 
 ## Description
 
-       This app allows a business leader to quickly access key information about his staff.
+       This app allows a business leader to quickly access key information needed to manage manage the departments, roles, and employees in the company in order to organize and plan the business.
 
 ## Dependencies
 
-      Inquirer 8.2.4, MySql2, console.table, express.js, npm, node.js
+      Inquirer 8.2.4
+      MySql2
+      console.table
+      express.js
+      node.js (including npm)
 
 ## Installation
 
-      Clone this repository to a new directory. Run 'npm install mysql2' to install the needed dependencies.
+      Clone this repository to a new directory.
+      Run 'npm install mysql2' to install the needed dependencies.
 
 ## Usage
 
