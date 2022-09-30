@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node index.js",
     "schema": "mysql -u root -p < db/schema.sql",
-    "seeds": "mysql -u root -p < db/seeds.sql"
+    "seeds": "mysql -u root -p < db/seeds.sql",
+    "restore-data": "npm run schema && npm run seeds"
   },
   "keywords": [],
   "author": "",
