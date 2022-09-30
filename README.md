@@ -35,7 +35,7 @@ GT Coding Bootcamp Challenge 12
 ## Installation
 
       Clone this repository to a new directory.
-      Run 'npm install mysql2' to install the needed dependencies.
+      Run 'npm i' to install the needed dependencies.
 
 ## Usage
 
