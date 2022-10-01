@@ -39,6 +39,11 @@ GT Coding Bootcamp Challenge 12
       Clone this repository to a new directory.
       Run 'npm i' to install the needed dependencies.
 
+      Set your MySql password:
+            Open index.js to line 9,
+            Enter your password between the quotes,
+            Save the file.
+
 ## Usage
 
       Initialize the databases by typing "npm run restore-data". Then type "npm start".
