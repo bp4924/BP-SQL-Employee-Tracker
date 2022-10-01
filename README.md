@@ -22,7 +22,9 @@ GT Coding Bootcamp Challenge 12
 
 ## Description
 
-       This app allows a business leader to quickly access key information needed to manage manage the departments, roles, and employees in the company in order to organize and plan the business.
+       This app allows a business leader to quickly access key information
+       needed to manage the departments, roles, and employees in the company
+       in order to organize and plan the business.
 
 ## Dependencies
 
@@ -35,7 +37,12 @@ GT Coding Bootcamp Challenge 12
 ## Installation
 
       Clone this repository to a new directory.
-      Run 'npm install mysql2' to install the needed dependencies.
+      Run 'npm i' to install the needed dependencies.
+
+      Set your MySql password:
+            Open index.js to line 9,
+            Enter your password between the quotes,
+            Save the file.
 
 ## Usage
 
@@ -65,3 +72,5 @@ Copyright © 2022. All rights reserved.
   [berniepetters](https://linkedin.com/in/berniepetters)
 
 ## Demo Video
+
+https://watch.screencastify.com/v/rWy1zdDhlbU3dRmQCcwj
