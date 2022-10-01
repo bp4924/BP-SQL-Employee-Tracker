@@ -22,7 +22,9 @@ GT Coding Bootcamp Challenge 12
 
 ## Description
 
-       This app allows a business leader to quickly access key information needed to manage manage the departments, roles, and employees in the company in order to organize and plan the business.
+       This app allows a business leader to quickly access key information
+       needed to manage the departments, roles, and employees in the company
+       in order to organize and plan the business.
 
 ## Dependencies
 
